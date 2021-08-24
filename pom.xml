@@ -8,7 +8,7 @@
 		<version>2.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.joyontasaha</groupId>
+	<groupId>com.joyonta</groupId>
 	<artifactId>spring-data-jpa-tutorial</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-data-jpa-tutorial</name>

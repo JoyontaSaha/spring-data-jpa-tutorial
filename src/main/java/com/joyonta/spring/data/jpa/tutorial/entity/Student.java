@@ -1,4 +1,4 @@
-package com.joyontasaha.spring.data.jpa.tutorial.entity;
+package com.joyonta.spring.data.jpa.tutorial.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

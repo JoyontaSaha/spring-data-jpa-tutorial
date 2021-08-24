@@ -1,4 +1,4 @@
-package com.joyontasaha.spring.data.jpa.tutorial;
+package com.joyonta.spring.data.jpa.tutorial;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.joyontasaha.spring.data.jpa.tutorial;
+package com.joyonta.spring.data.jpa.tutorial;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
