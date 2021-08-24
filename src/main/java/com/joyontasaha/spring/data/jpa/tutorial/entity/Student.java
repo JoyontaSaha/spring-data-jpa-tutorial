@@ -8,7 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "StudentTable")
+@Table(
+        name = "StudentTable",
+        uniqueConstraints= {
+                @UniqueConstraint(columnNames = {
+                        "emailAddress"
+                })
+        }
+)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,7 +35,10 @@ public class Student {
     private Long studentId;
     private String firstName;
     private String lastName;
-    @Column(name = "emailAddress")
+    @Column(
+            name = "emailAddress",
+            nullable = false
+    )
     private String emailId;
     private String guardianName;
     private String guardianEmail;
