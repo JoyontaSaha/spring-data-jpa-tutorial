@@ -19,9 +19,9 @@ class StudentRepositoryTest {
     @Test
     public void saveStudent() {
         Student student = Student.builder()
-                .emailId("shabbir@gmail.com")
-                .firstName("Shabbir")
-                .lastName("Dawoodi")
+                .emailId("rin@gmail.com")
+                .firstName("rin")
+                //.lastName()
                 //.guardianName("Nikhil")
                 //.guardianEmail("nikhil@gmail.com")
                 //.guardianMobile("9999999999")
@@ -57,4 +57,54 @@ class StudentRepositoryTest {
 
         System.out.println("studentList = " + studentList);
     }
+
+    @Test
+    public void printStudentByFirstName() {
+        List<Student> students =
+                studentRepository.findByFirstName("Shivam");
+
+        System.out.println("Students = " + students);
+    }
+
+    @Test
+    public void printStudentByFirstNameContaining() {
+        List<Student> students =
+                studentRepository.findByFirstNameContaining("S");
+
+        System.out.println("Students = " + students);
+    }
+
+    @Test
+    public void printStudentByLastNameNotNull() {
+        List<Student> students =
+                studentRepository.findByLastNameNotNull();
+
+        System.out.println("Students = " + students);
+    }
+
+    @Test
+    public void printStudentByLastNameIsNull() {
+        List<Student> students =
+                studentRepository.findByLastNameIsNull();
+
+        System.out.println("Students = " + students);
+    }
+
+    @Test
+    public void printStudentByGuardianName() {
+        List<Student> students =
+                studentRepository.findByGuardianName("Nikhil");
+
+        System.out.println("Students = " + students);
+    }
+
+    @Test
+    public void printStudentByFirstNameAndLastName() {
+        List<Student> students =
+                studentRepository.findByFirstNameAndLastName("Shivam", "Kumar");
+
+        System.out.println("Students = " + students);
+    }
+
+
 }
