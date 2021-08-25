@@ -144,4 +144,22 @@ class StudentRepositoryTest {
         System.out.println("studentFirstName = " + studentFirstName);
     }
 
+    @Test
+    public void printStudentByFirstNameOrLastNameNamedParams() {
+        Student student =
+                studentRepository.fetchStudentByFirstNameOrLastNameNamedParams("Shiv", "Kumar");
+
+        System.out.println("Student = " + student);
+    }
+
+    @Test
+    public void printStudentByEmailIdNativeNamedParams() {
+        Student student =
+                studentRepository.getStudentByEmailAddressNativeNamedParams("shivam@gmail.com");
+
+        System.out.println("Student = " + student);
+    }
+
+
+
 }

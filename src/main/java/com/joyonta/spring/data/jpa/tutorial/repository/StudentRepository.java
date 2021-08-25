@@ -3,6 +3,7 @@ package com.joyonta.spring.data.jpa.tutorial.repository;
 import com.joyonta.spring.data.jpa.tutorial.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -67,6 +68,28 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     String getStudentFirstNameByEmailAddressNative(String emailId);
+
+
+    /**
+     * JPQL query format param requires Java entity name and fields name, not Database Table name and column names
+     * @param firstName
+     * @param lastName
+     * @return Student object
+     */
+    @Query("SELECT s FROM Student s WHERE s.firstName = :firstName OR s.lastName = :lastName")
+    Student fetchStudentByFirstNameOrLastNameNamedParams(@Param("firstName") String firstName, @Param("lastName") String lastName);
+
+
+    /**
+     * Native query format param requires Database Table name and column names
+     * @param emailId
+     * @return Student object
+     */
+    @Query(
+            value = "SELECT * FROM StudentTable s WHERE s.emailAddress = :emailId",
+            nativeQuery = true
+    )
+    Student getStudentByEmailAddressNativeNamedParams(@Param("emailId") String emailId);
 
 
 }
