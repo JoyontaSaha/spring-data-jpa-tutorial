@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class StudentRepositoryTest {
 
@@ -106,5 +104,28 @@ class StudentRepositoryTest {
         System.out.println("Students = " + students);
     }
 
+    @Test
+    public void printStudentByEmailId() {
+        Student student =
+                studentRepository.getStudentByEmailAddress("shivam@gmail.com");
+
+        System.out.println("Student = " + student);
+    }
+
+    @Test
+    public void printStudentNameByEmailId() {
+        String studentName =
+                studentRepository.getStudentFirstNameByEmailAddress("shivam@gmail.com");
+
+        System.out.println("studentName = " + studentName);
+    }
+
+    @Test
+    public void printStudentByFirstNameOrLastName() {
+         Student student =
+                studentRepository.fetchStudentByFirstNameOrLastName("Shiv", "Kumar");
+
+        System.out.println("Student = " + student);
+    }
 
 }
