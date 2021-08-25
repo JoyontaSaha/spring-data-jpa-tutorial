@@ -37,13 +37,36 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     String getStudentFirstNameByEmailAddress(String emailId);
 
     /**
-     * JPQL query format param requires Java entity name and fields name not Database Table name and column names
+     * JPQL query format param requires Java entity name and fields name, not Database Table name and column names
      * @param firstName
      * @param lastName
      * @return Student object
      */
     @Query("SELECT s FROM Student s WHERE s.firstName = ?1 OR s.lastName = ?2")
     Student fetchStudentByFirstNameOrLastName(String firstName, String lastName);
+
+
+    /**
+     * Native query format param requires Database Table name and column names
+     * @param emailId
+     * @return Student object
+     */
+    @Query(
+            value = "SELECT * FROM StudentTable s WHERE s.emailAddress = ?1",
+            nativeQuery = true
+    )
+    Student getStudentByEmailAddressNative(String emailId);
+
+    /**
+     * Native query format param requires Database Table name and column names
+     * @param emailId
+     * @return Student firstName
+     */
+    @Query(
+            value = "SELECT s.firstName FROM StudentTable s WHERE s.emailAddress = ?1",
+            nativeQuery = true
+    )
+    String getStudentFirstNameByEmailAddressNative(String emailId);
 
 
 }

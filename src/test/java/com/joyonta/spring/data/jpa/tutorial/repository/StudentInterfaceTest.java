@@ -114,10 +114,10 @@ class StudentRepositoryTest {
 
     @Test
     public void printStudentNameByEmailId() {
-        String studentName =
+        String studentFirstName =
                 studentRepository.getStudentFirstNameByEmailAddress("shivam@gmail.com");
 
-        System.out.println("studentName = " + studentName);
+        System.out.println("studentFirstName = " + studentFirstName);
     }
 
     @Test
@@ -126,6 +126,22 @@ class StudentRepositoryTest {
                 studentRepository.fetchStudentByFirstNameOrLastName("Shiv", "Kumar");
 
         System.out.println("Student = " + student);
+    }
+
+    @Test
+    public void printStudentByEmailIdNative() {
+        Student student =
+                studentRepository.getStudentByEmailAddressNative("shivam@gmail.com");
+
+        System.out.println("Student = " + student);
+    }
+
+    @Test
+    public void printStudentFirstNameByEmailIdNative() {
+        String studentFirstName =
+                studentRepository.getStudentFirstNameByEmailAddressNative("shivam@gmail.com");
+
+        System.out.println("studentFirstName = " + studentFirstName);
     }
 
 }
