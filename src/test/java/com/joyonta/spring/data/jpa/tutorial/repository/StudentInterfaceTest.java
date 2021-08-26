@@ -160,6 +160,14 @@ class StudentRepositoryTest {
         System.out.println("Student = " + student);
     }
 
+    @Test
+    public void updateStudentFirstNameByEmailAddressNativeNamedParams() {
+        int studentId =
+                studentRepository.updateStudentFirstNameByEmailAddressNativeNamedParams("Shivamyam", "shivam@gmail.com");
+
+        System.out.println("StudentId = " + studentId);
+    }
+
 
 
 }

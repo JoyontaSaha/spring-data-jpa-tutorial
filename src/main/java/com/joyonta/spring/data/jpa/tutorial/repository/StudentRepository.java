@@ -2,9 +2,11 @@ package com.joyonta.spring.data.jpa.tutorial.repository;
 
 import com.joyonta.spring.data.jpa.tutorial.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
@@ -90,6 +92,36 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     Student getStudentByEmailAddressNativeNamedParams(@Param("emailId") String emailId);
+
+    /**
+     * Native query format param requires Database Table name and column names
+
+     * @Modifying annotation is used for CUD[Create/Insert, Update, Delete] data records of tables in database
+     *
+     * @Transactional annotation is used for
+     * transaction.begin()
+     * .....transactions business logic....
+     * transacton.commit();
+     * otherwise transaction.rollback
+     * when exception occur during transaction interval
+     *
+     * @Transactional annotation can be used in both class level and method level
+     *
+     * @Transactional is basically used in @Service layer
+     * where CRUD operations on multiple tables of a database need to be done under a single transaction
+     * In that scenario, @Service layer annotate a method @Transactional
+     * then call all CRUD operations or methods involved inside that method
+     * @param firstName
+     * @param emailId
+     * @return Student id
+     */
+    @Modifying
+    @Transactional
+    @Query(
+            value = "UPDATE StudentTable s SET s.firstName = :firstName WHERE s.emailAddress = :emailId",
+            nativeQuery = true
+    )
+    int updateStudentFirstNameByEmailAddressNativeNamedParams(@Param("firstName") String firstName, @Param("emailId") String emailId);
 
 
 }
