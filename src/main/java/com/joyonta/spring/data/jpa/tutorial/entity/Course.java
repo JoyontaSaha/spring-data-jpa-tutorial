@@ -26,4 +26,12 @@ public class Course {
     private Long courseId;
     private String title;
     private Integer credit;
+
+    /**
+     * mappedBy = "course" -> course is the field/attribute of CourseMaterial's entity
+     */
+    @OneToOne(
+            mappedBy = "course"
+    )
+    private CourseMaterial courseMaterial;
 }
