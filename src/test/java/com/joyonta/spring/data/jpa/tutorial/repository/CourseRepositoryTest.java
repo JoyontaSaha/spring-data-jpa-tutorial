@@ -1,6 +1,8 @@
 package com.joyonta.spring.data.jpa.tutorial.repository;
 
 import com.joyonta.spring.data.jpa.tutorial.entity.Course;
+import com.joyonta.spring.data.jpa.tutorial.entity.Guardian;
+import com.joyonta.spring.data.jpa.tutorial.entity.Student;
 import com.joyonta.spring.data.jpa.tutorial.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,6 +150,37 @@ class CourseRepositoryTest {
                 ).getContent();
 
         System.out.println("courses = " + courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher() {
+        Guardian guardian = Guardian.builder()
+                .email("nikhil@gmail.com")
+                .name("Nikhil")
+                .mobile("9999956324")
+                .build();
+
+        Student student = Student.builder()
+                .firstName("Shivam")
+                .emailId("shivam@gmail.com")
+                .lastName("Kumar")
+                .guardian(guardian)
+                .build();
+
+        Teacher teacher = Teacher.builder()
+                .firstName("Partho")
+                .lastName("Bhattachariya")
+                .build();
+
+        Course course = Course.builder()
+                .title("Networking")
+                .credit(6)
+                .teacher(teacher)
+                .build();
+
+        course.addStudent(student);
+
+        courseRepository.save(course);
     }
 
 }

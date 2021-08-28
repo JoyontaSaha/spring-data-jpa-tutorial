@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Data
@@ -44,4 +45,27 @@ public class Course {
             referencedColumnName = "teacherId"
     )
     private Teacher teacher;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "studentCourseMap",
+            joinColumns = @JoinColumn(
+                    name = "courseId",
+                    referencedColumnName = "courseId"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "studentId",
+                    referencedColumnName = "studentId"
+            )
+    )
+    private List<Student> students;
+
+    public void addStudent(Student student) {
+        if(this.students == null) {
+            this.students = new ArrayList<>();
+        }
+        this.students.add(student);
+    }
 }

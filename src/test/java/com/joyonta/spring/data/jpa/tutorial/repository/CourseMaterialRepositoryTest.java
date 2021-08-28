@@ -11,7 +11,7 @@ import java.util.*;
 class CourseMaterialRepositoryTest {
 
     @Autowired
-    private CourseMaterialRepository repository;
+    private CourseMaterialRepository courseMaterialRepository;
 
     @Test
     public void saveCourseMaterial() {
@@ -25,18 +25,18 @@ class CourseMaterialRepositoryTest {
                 .course(course)
                 .build();
 
-        repository.save(courseMaterial);
+        courseMaterialRepository.save(courseMaterial);
     }
 
     @Test
     public void printCourseMaterials() {
-        List<CourseMaterial> courseMaterials = repository.findAll();
+        List<CourseMaterial> courseMaterials = courseMaterialRepository.findAll();
         System.out.println("courseMaterials = " + courseMaterials);
     }
 
     @Test
     public void printCourseMaterialById() {
-        CourseMaterial courseMaterial = repository.findById(2L).get();
+        CourseMaterial courseMaterial = courseMaterialRepository.findById(2L).get();
         System.out.println("courseMaterial = " + courseMaterial);
     }
 }

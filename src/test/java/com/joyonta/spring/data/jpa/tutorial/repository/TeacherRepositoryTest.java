@@ -6,14 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class TeacherRepositoryTest {
     @Autowired
-    private TeacherRepository repository;
+    private TeacherRepository teacherRepository;
 
     @Test
     public void saveTeacher() {
@@ -31,7 +27,7 @@ class TeacherRepositoryTest {
 //                .courses(Arrays.asList(dsaCourse, caCourse))
                 .build();
 
-        repository.save(teacher);
+        teacherRepository.save(teacher);
     }
 
 
