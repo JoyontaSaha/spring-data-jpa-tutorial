@@ -11,28 +11,28 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class TeacherRepositoryTest {
+class CourseRepositoryTest {
     @Autowired
-    private TeacherRepository repository;
+    private CourseRepository courseRepository;
 
     @Test
-    public void saveTeacher() {
-        Course dsaCourse = Course.builder()
-                .title("DSA")
-                .credit(6)
-                .build();
-        Course caCourse = Course.builder()
-                .title("CA")
-                .credit(6)
-                .build();
+    public void printCourses() {
+        System.out.println(courseRepository.findAll());
+    }
+
+    @Test
+    public void saveCourseWithTeacher() {
         Teacher teacher = Teacher.builder()
                 .firstName("Moumita")
                 .lastName("Bhattachariya")
-//                .courses(Arrays.asList(dsaCourse, caCourse))
                 .build();
 
-        repository.save(teacher);
+        Course course = Course.builder()
+                .title("DSA")
+                .credit(6)
+                .teacher(teacher)
+                .build();
+
+        courseRepository.save(course);
     }
-
-
 }
