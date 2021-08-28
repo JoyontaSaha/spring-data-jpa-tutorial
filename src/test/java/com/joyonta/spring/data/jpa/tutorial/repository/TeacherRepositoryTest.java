@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +29,11 @@ class TeacherRepositoryTest {
         Teacher teacher = Teacher.builder()
                 .firstName("Moumita")
                 .lastName("Bhattachariya")
-//                .courses(Arrays.asList(dsaCourse, caCourse))
+                .courses(new HashSet<Course>(){{
+                    add(dsaCourse);
+                    add(caCourse);
+
+                }})
                 .build();
 
         repository.save(teacher);

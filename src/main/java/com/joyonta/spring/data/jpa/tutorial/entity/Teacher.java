@@ -8,6 +8,7 @@ import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -38,4 +39,11 @@ public class Teacher {
            referencedColumnName = "teacherId"
    )
    private List<Course> courses;*/
+
+   @OneToMany(
+           mappedBy = "teacher",
+           cascade = CascadeType.ALL,
+           fetch = FetchType.LAZY
+           )
+   private Set<Course> courses;
 }
